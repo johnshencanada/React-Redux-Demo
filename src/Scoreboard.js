@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Stopwatch from './components/Stopwatch'
+import Stopwatch from './components/Stopwatch';
+import Stats from './components/Stats';
+import Counter from './components/Counter';
+import AddPlayerForm from './components/AddPlayerForm';
 
 const INITIAL_STATE = {
   players: [
@@ -81,33 +84,6 @@ Header.propTypes = {
   players: PropTypes.array.isRequired,
 };
 
-// Move to components/Stats.js
-// -----------------------------------------------------------------------
-function Stats(props) {
-  const playerCount = props.players.length;
-  const totalPoints = props.players.reduce(function(total, player) {
-    return total + player.score;
-  }, 0);
-
-  return (
-    <table className="stats">
-      <tbody>
-        <tr>
-          <td>Players:</td>
-          <td>{playerCount}</td>
-        </tr>
-        <tr>
-          <td>Total Points:</td>
-          <td>{totalPoints}</td>
-        </tr>
-      </tbody>
-    </table>
-  )
-}
-
-Stats.propTypes = {
-  players: PropTypes.array.isRequired,
-};
 
 // ----------------------------------------------------------------------
 
@@ -131,67 +107,5 @@ Player.propTypes = {
   onRemove: PropTypes.func.isRequired,
   onScoreChange: PropTypes.func.isRequired,
 };
-
-// ----------------------------------------------------------
-
-function Counter(props) {
- return (
-   <div className="counter" >
-     <button className="counter-action decrement" onClick={() => props.onChange(-1)}>
-       -
-     </button>
-     <div className="counter-score"> {props.score} </div>
-     <button className="counter-action increment" onClick={() => props.onChange(1)}>
-       +
-     </button>
-   </div>
- );
-}
-
-Counter.propTypes = {
-  onChange: PropTypes.func.isRequired,
-  score: PropTypes.number.isRequired,
-};
-
-class AddPlayerForm extends React.Component {
-
-  propTypes: {
-    onAdd: PropTypes.func.isRequired,
-  }
-
-  constructor (props) {
-    super(props);
-    this.state = {
-      name: '',
-    }
-  }
-
-  onNameChange(e) {
-    const name = e.target.value;
-    this.setState({ name: name });
-  }
-
-  onSubmit(e) {
-    if (e) e.preventDefault();
-    this.props.onAdd(this.state.name);
-    this.setState({ name: '' });
-  }
-
-  render() {
-    return (
-      <div className="add-player-form">
-        <form onSubmit={this.onSubmit}>
-          <input
-            type="text"
-            value={this.state.name}
-            onChange={this.onNameChange}
-            placeholder="Player Name"
-          />
-          <input type="submit" value="Add Player" />
-        </form>
-      </div>
-    );
-  }
-}
 
 export default Scoreboard;
