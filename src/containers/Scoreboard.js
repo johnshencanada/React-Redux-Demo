@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Stopwatch from './components/Stopwatch'
 
 const INITIAL_STATE = {
   players: [
@@ -22,7 +21,7 @@ const INITIAL_STATE = {
 class Scoreboard extends React.Component {
 
   state = INITIAL_STATE;
-
+  
   constructor (props) {
     super(props);
   }
@@ -108,6 +107,10 @@ function Stats(props) {
 Stats.propTypes = {
   players: PropTypes.array.isRequired,
 };
+
+// ------------------------------------------------------------------------
+
+
 
 // ----------------------------------------------------------------------
 
