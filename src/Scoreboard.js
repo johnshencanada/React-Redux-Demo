@@ -26,21 +26,17 @@ class Scoreboard extends React.Component {
 
   state = INITIAL_STATE;
 
-  constructor (props) {
-    super(props);
-  }
-
-  onScoreChange (index, delta) {
+  onScoreChange = (index, delta) => {
     this.state.players[index].score += delta;
     this.setState(this.state);
   }
 
-  onAddPlayer (name) {
+  onAddPlayer = (name) => {
     this.state.players.push({ name: name, score: 0 });
     this.setState(this.state);
   }
 
-  onRemovePlayer (index) {
+  onRemovePlayer = (index) => {
     this.state.players.splice(index, 1);
     this.setState(this.state);
   }
