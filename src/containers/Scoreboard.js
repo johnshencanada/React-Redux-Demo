@@ -1,29 +1,27 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import AddPlayerForm from './components/AddPlayerForm';
-import Header from './components/Header';
-import Player from './components/Player';
-
-const INITIAL_STATE = {
-  players: [
-    {
-      name: 'Jim Hoskins',
-      score: 31,
-    },
-    {
-      name: 'Andrew Chalkley',
-      score: 20,
-    },
-    {
-      name: 'Alena Holligan',
-      score: 50,
-    },
-  ],
-}
+import AddPlayerForm from '../components/AddPlayerForm';
+import Header from '../components/Header';
+import Player from '../components/Player';
 
 class Scoreboard extends React.Component {
 
-  state = INITIAL_STATE;
+  state = {
+    players: [
+      {
+        name: 'Jim Hoskins',
+        score: 31,
+      },
+      {
+        name: 'Andrew Chalkley',
+        score: 20,
+      },
+      {
+        name: 'Alena Holligan',
+        score: 50,
+      },
+    ],
+  }
 
   onScoreChange = (index, delta) => {
     this.state.players[index].score += delta;
