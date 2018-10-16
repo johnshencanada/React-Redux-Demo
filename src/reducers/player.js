@@ -12,3 +12,7 @@ const initialState = [
     score: 50,
   },
 ];
+
+export default function Player(state=initialState, action) {
+  
+}
