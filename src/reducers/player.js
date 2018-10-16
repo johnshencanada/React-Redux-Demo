@@ -1,7 +1,5 @@
-import * as PlayerActionTypes from '../actiontypes/player';
-
 const initialState = [
-	{
+  {
     name: 'Jim Hoskins',
     score: 31,
   },
@@ -16,9 +14,8 @@ const initialState = [
 ];
 
 export default function Player(state=initialState,action) {
-
 	switch(action.type) {
-		case 'ADD_PLAYER':
+    case 'ADD_PLAYER':
 			return [
 				...state,
 				{
@@ -26,10 +23,9 @@ export default function Player(state=initialState,action) {
 					score: 0,
 				}
 			];
-
 		case 'REMOVE_PLAYER':
 			return [
-				...state.slice(0, aciton.index),
+				...state.slice(0, action.index),
 				...state.slice(action.index+1)
 			];
 
@@ -44,8 +40,8 @@ export default function Player(state=initialState,action) {
 				return player;
 			});
 
-		case:
-			return state;
+	  default:
+	    return state;
 	}
 }
 
