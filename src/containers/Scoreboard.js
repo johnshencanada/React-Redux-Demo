@@ -18,15 +18,9 @@ class Scoreboard extends React.Component {
     this.setState(this.state);
   }
 
-  onRemovePlayer = (index) => {
-    this.state.players.splice(index, 1);
-    this.setState(this.state);
-  }
-
   render() {
 
     const {dispatch, players} = this.props;
-    const addPlayer = bindActionCreators(playerActionCreators.addPlayer, dispatch);
 
     return (
       <div className="scoreboard">
@@ -34,17 +28,18 @@ class Scoreboard extends React.Component {
         <div className="players">
           {players.map(function(player, index) {
              return (
-               <Player
-                 name={player.name}
-                 score={player.score}
-                 key={player.name}
-                 onScoreChange={(delta) => this.onScoreChange(index, delta)}
-                 onRemove={() => this.onRemovePlayer(index)}
+                <Player
+                  index={index}
+                  name={player.name}
+                  score={player.score}
+                  key={player.name}
+                  onScoreChange={ () => dispatch({ type:'UPDATE_PLAYER_SCORE', index:index, score:1 }) }
+                  removePlayer={ () => dispatch({ type:'REMOVE_PLAYER', index:index }) }
                />
              );
            }.bind(this))}
         </div>
-        <AddPlayerForm onAdd={addPlayer} />
+        <AddPlayerForm onAdd={ () => dispatch({ type:'ADD_PLAYER', name:'john' }) }/>
       </div>
     );
   }

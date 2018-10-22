@@ -1,6 +1,6 @@
 const initialState = [
   {
-    name: 'Jim Hoskins',
+    name: 'john shen',
     score: 31,
   },
   {
@@ -14,12 +14,12 @@ const initialState = [
 ];
 
 export default function Player(state=initialState, action) {
-  switch(action.tytpe) {
+  switch(action.type) {
     case 'ADD_PLAYER':
       return [
         ...state,
         {
-          action.name,
+          name:action.name,
           score:0
         }
       ];
